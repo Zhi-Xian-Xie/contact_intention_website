@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+        content="">
+  <meta name="keywords" content="Dexterous Manipulation, Contact Dynamics, Signed Distance Functions, Model Predictive Control, Reinforcement Learning">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Where to Touch, How to Contact: A Hierarchical RL–MPC Framework for Geometry-Aware Long-Horizon Dexterous Manipulation</title>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYVRSFMDRL');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    .emphasized-first-letter::first-letter {
+      font-family: 'Playfair Display', serif; /* Use your chosen swash font here */
+      font-size: 2em; /* Adjust size as needed */
+      font-weight: bold; /* Optional: makes the letter bold */
+      color: #000; /* Optional: change color if needed */
+      float: left; /* Optional: positions the letter to the left */
+      margin-right: 0.1em; /* Optional: space between the letter and the rest of the text */
+    }
+
+    .tab-font {
+      font-weight: bold;
+    }
+  </style>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
+        rel="stylesheet">
+
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="./static/js/fontawesome.all.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+</head>
+<body>
+
+
+<!-- author and links section -->  
+<section class="hero">
+  <div class="hero-body">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered">
+        <div class="column has-text-centered">
+          <h1 class="title is-1 publication-title">Where to Touch, How to Contact: A Hierarchical RL–MPC Framework for Geometry-Aware Long-Horizon Dexterous Manipulation</h1>
+          <div class="is-size-5 publication-authors">
+            <span class="author-block">
+              <a href="https://zhi-xian-xie.github.io/" target="_blank">Zhixian Xie</a><sup>1</sup>,&nbsp&nbsp</span>
+            
+            <span class="author-block">
+              <a href="https://yuxng.github.io/" target="_blank">Yu Xiang</a><sup>2</sup>,&nbsp&nbsp</span>
+
+            <span class="author-block">
+              <a href="https://dair.seas.upenn.edu/posa/" target="_blank">Michael Posa</a><sup>3</sup>,&nbsp&nbsp</span>
+
+            <span class="author-block">
+              <a href="https://asu-iris.github.io/" target="_blank">Wanxin Jin</a><sup>1</sup></span>
+
+
+            <!-- <span class="author-block">
+              <a href="https://zhuoranyang.github.io/" target="_blank">Zhuoran Yang</a><sup>3</sup>&nbsp&nbsp</span>
+
+            <span class="author-block">
+              <a href="https://engineering.purdue.edu/AAE/people/ptProfile?resource_id=124981" target="_blank">Shaoshuai Mou</a><sup>4</sup>,&nbsp&nbsp</span>
+            </span>
+
+            <span class="author-block">
+              <a href="https://www.georgejpappas.org/" target="_blank">George J. Pappas</a><sup>5</sup>
+            </span> -->
+
+
+          </div>
+
+          <div class="is-size-5 publication-authors">
+            <span class="author-block"><sup>1</sup>Arizona State University</span>
+            <span class="author-block"><sup>2</sup>University of Texas at Dallas</span>
+            <span class="author-block"><sup>3</sup>University of Pennsylvania</span>
+            <!-- <span class="author-block"><sup>2</sup>Northwestern University,&nbsp&nbsp</span>
+            <span class="author-block"><sup>3</sup>Yale University,&nbsp&nbsp</span><br>
+            <span class="author-block"><sup>4</sup>Purdue University,&nbsp&nbsp</span>
+            <span class="author-block"><sup>5</sup>University of Pennsylvania</span> -->
+          </div>
+          
+
+          <div class="column has-text-centered">
+            <div class="publication-links">
+              <!-- PDF Link. -->
+              <span class="link-block">
+                <a href="" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Preprint (Coming Soon)</span>
+                </a>
+              </span>
+              <!-- <span class="link-block">
+                <a href="https://papers.nips.cc/paper/2021/hash/85ea6fd7a2ca3960d0cf5201933ac998-Abstract.html" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>NeurIPS Paper 2</span>
+                </a>
+              </span> -->
+              <!-- Code Link. -->
+              <span class="link-block">
+                <a href="" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code Repo (Coming Soon)</span>
+                </a>
+              </span>
+
+                <!-- Code Link. -->
+                <span class="link-block">
+                  <a href="" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                    <span class="icon">
+                        <i class="fab fa-youtube"></i>
+                    </span>
+                    <span>Video demo (Coming Soon)</span>
+                  </a>
+                </span>
+                            <!-- Code Link. -->
+              <!-- <span class="link-block">
+                <a href="https://github.com/wanxinjin/Safe-PDP" target="_blank"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="fab fa-github"></i>
+                  </span>
+                  <span>Code Repo 2</span>
+                </a>
+              </span> -->
+
+              <!-- Dataset Link. -->
+              <!-- <span class="link-block">
+                <a href="https://github.com/askforalfred/alfred"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                      <i class="far fa-images"></i>
+                  </span>
+                  <span>Data</span>
+                </a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- teaser section (very important) -->   
+<section class="hero teaser">
+  <div class="container is-max-desktop">
+      <h2 class="subtitle has-text-centered">
+        <b>Overview:</b> 
+        we propose a hierarchical RL–MPC framework: the reinforcement learning (RL) performs geometric–kinematic reasoning at a higher level, while offloading
+        the complex dynamic contact planning to contact-implicit model predictive control (MPC) at a lower level. The two levels are linked by a contact intention—a novel object-centric interface
+        that specifies a surface contact location (geometry) together with a post-contact object-level subgoal (kinematics).
+        <br><br>
+    
+        <!-- significant video or figure goes here -->    
+        <hr>
+        <br>
+        <figure>
+          <h2 class="title is-2">Comprehensive Video Demo: <br> real-world execution</h2>
+          <!-- <figcaption style="text-align: center; color: #888;">
+            Long take uncut video: Allegro hand learning dexterous manipulation from scratch on hardware
+            </figcaption> -->
+            <!-- <br> -->
+          <video id="teaser" muted loop playsinline controls style="width: 100%; max-width: 1000px; height: auto;">
+            <source src="./static/videos/hardware/demo_low_resolution.mp4"
+                    type="video/mp4">
+          </video>
+        </figure>
+      </h2>
+  </div>
+
+</section>
+
+
+<!-- Abstract. section -->
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Abstract</h2>
+        <div class="content has-text-justified">
+          <p class="emphasized-first-letter">
+            We propose ContactSDF, a new model that leverages signed distance functions (SDFs) to approximate multi-contact dynamics, 
+            including both collision detection and time-stepping routines. In the ContactSDF, 
+            an SDF is first constructed from the supporting plane representation of the object for collision detection, 
+            and then the obtained contact velocity dual cones are used to construct a second SDF for time stepping of contact dynamics. 
+            The two SDF constructions lead to a differentiable and closed-form multi-contact dynamic model for state prediction, 
+            different from classic complementary-based multi-contact models. 
+            ContactSDF allows for efficient model-based control and learning in contact-rich manipulation, 
+            when integrated into existing learning and control frameworks. 
+            We performed extensive simulation experiments to show the effectiveness of ContactSDF for model learning 
+            and real-time control of dexterous manipulation. We also evaluate the ContactSDF on a real-world Allegro hand for in-hand dexterous manipulation. 
+            Results show with around 2 minutes of learning, 
+            the ContactSDF achieves high-quality MPC for dexterous manipulation at a frequency of 30-60Hz.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section> -->
+
+
+<!-- <section class="hero teaser">
+  <h1 class="title is-1" style="text-align: center;">Hardware Real-time Manipulation</h1>
+  <div class="container is-max-desktop">
+    <div class="content has-text-justified" style="font-size: 18px;">
+      The contactSDF model is able to capture the multi-contact dynamics quickly and facilitate the MPC to 
+      finish the dexterous manipulation task in real-time.
+      We present the complete learning from scratch process on the Allegro hand hardware in reorientation of the cube. 
+      The target is to rotate the cube in a counterclockwise direction. Each trajectory is tasked with a 90-degree incremental pose change.
+      The finger joints will be reset to the initial position after each rollout. We demonstrate that within only 2 minutes learning from the on-MPC
+      data, the task can be accomplished.
+    </div>
+      <h1 class="title is-1" style="text-align: left; font-size: 36px;">Learning from Scratch (uncut long take)</h1>
+      <div class="hero-body is-vcentered" style="background-color: rgb(0, 0, 0); padding: 1px;">
+      <video id="teaser" muted loop playsinline controls style="width: 100%; max-width: 1000px; height: auto;">
+        <source src="./static/videos/hardware/hardware_learning_from_scratch.mp4"
+                type="video/mp4">
+      </video>
+    </div>
+  </div>
+</section> -->
+
+
+<!-- <section class="section">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-one-thirds">
+        <h1 class="title is-1" style="text-align: left; font-size: 36px;">Hardware Manipulation Evaluation (uncut long take)</h1>
+        <div class="content has-text-justified">
+          With the learned contactSDF model, we showcase the real-time manipulation results as follows. The MPC is able to finish both 
+          counterclockwise and clockwise continuous reorientation tasks in real-time.
+        </div>
+      </div>
+    </div>
+
+    <div class="column is-full">
+      <div class="content has-text-left">
+        <ul style="margin-top: -20px;">
+        </ul>
+      </div>
+    </div>
+
+    <div class="columns is-mobile is-vcentered">
+      <div class="column is-half" style="background-color: black; padding: 10px;">
+        <p style="text-align: center; color: white; font-size: 24px;"><b>Counterclockwise reorientation</b></p>
+        <video class="video"  
+          autoplay controls muted loop playsinline 
+          style="width: 450px; height: 300px; display: block; margin: 0 auto;" 
+          src="./static/videos/hardware/hardware_ccw.mp4"> 
+        </video>
+      </div>
+      <div class="column is-half" style="background-color: black; padding: 10px;">
+        <p style="text-align: center; color: white; font-size: 24px;"><b>Clockwise reorientation</b></p>
+        <video class="video"  
+          autoplay controls muted loop playsinline 
+          style="width: 450px; height: 300px; display: block; margin: 0 auto;" 
+          src="./static/videos/hardware/hardware_cw.mp4"> 
+        </video>
+      </div>
+    
+    </div>
+  </div>
+</section> -->
+
+
+<!-- how-it-works section -->
+
+<section class="section">
+  <div class="container is-max-desktop">
+      <br>
+      <hr>
+      <br>
+      <h2 class="title is-2">How does it work?</h2>
+      <div class="content text-align: left">
+        <br>
+        <!-- Figure -->
+        <figure>
+          <img src="./static/images/overview.png" alt="Description of the image" style="max-width: 80%; height: auto;">
+          <figcaption class="has-text-centered"></figcaption>
+        </figure>
+        <p> Our proposed framework consists of (1) a higher-level policy for object-centric
+          geometric and kinematic reasoning and (2) a lower-level policy
+          for dynamic contact planning. The higher-level policy, trained
+          using RL, predicts contact intention, which parameterizes the
+          lower-level policy. The lower-level policy seeks to realize
+          the contact intention through local contact-implicit model
+          predictive control (MPC). The output of the lower-level policy
+          is the robot action command.
+      </div>
+      
+      <br>
+      <hr>
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Results header. -->
+    <h1 class="title is-2">More Simulation Results</h1>
+    <br>
+    <h3 class="title is-4" style="text-align: center;">Geometry-generalized Pushing Task</h3>
+    <p>  In this task, the goal is to learn
+          a unified policy that pushes a diverse set of letter-shaped
+          objects from arbitrary initial poses to arbitrary planar target
+          pose (position and orientation). 12 English letters
+          are used in total: 6 letters (E, H, L, N, T, X) are used for
+          training, and the remaining 6 (F, I, K, V, Y, Z) are held
+          out for evaluation.  
+    </p>
+    <br>
+
+    <!-- Results videos in 4x3 grid -->
+    <div class="columns is-multiline is-centered">
+      <div class="column is-3">
+        <video controls muted loop>
+            <source src="./static/videos/push_seen/1.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="column is-3">
+        <video controls muted loop>
+            <source src="./static/videos/push_seen/2.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="column is-3">
+        <video controls muted loop>
+            <source src="./static/videos/push_seen/3.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="column is-3">
+        <video controls muted loop>
+            <source src="./static/videos/push_seen/4.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="column is-3">
+        <video controls muted loop>
+            <source src="./static/videos/push_seen/5.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="column is-3">
+        <video controls muted loop>
+            <source src="./static/videos/push_seen/6.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="column is-3">
+        <video controls muted loop>
+            <source src="./static/videos/push_unseen/1.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="column is-3">
+        <video controls muted loop>
+            <source src="./static/videos/push_unseen/2.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="column is-3">
+        <video controls muted loop>
+            <source src="./static/videos/push_unseen/3.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="column is-3">
+        <video controls muted loop>
+            <source src="./static/videos/push_unseen/4.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="column is-3">
+        <video controls muted loop>
+            <source src="./static/videos/push_unseen/5.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="column is-3">
+        <video controls muted loop>
+            <source src="./static/videos/push_unseen/6.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+
+    <br>
+    <h3 class="title is-4" style="text-align: center;">3D Object Reorientation Task</h3>
+    <p>  In this task, the goal is to reorient a
+          cube from a randomized initial pose to a randomized 3D target
+          pose.
+    </p>
+    <br>
+
+    <div class="columns is-multiline is-centered">
+      <div class="column is-3">
+        <video controls muted loop>
+            <source src="./static/videos/cube/1.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="column is-3">
+        <video controls muted loop>
+            <source src="./static/videos/cube/2.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="column is-3">
+        <video controls muted loop>
+            <source src="./static/videos/cube/3.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="column is-3">
+        <video controls muted loop>
+            <source src="./static/videos/cube/4.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  
+
+  </div>
+</section>
+
+
+<!-- To Be Completed -->
+<!-- Acknowledgements -->
+<section class="section">
+  <div class="container is-max-desktop">
+    <br>
+    <hr>
+    <br>
+    <!-- Results header. -->
+    <h1 class="title is-2">Acknowledgements</h1>
+    <p>  Special thanks to...
+    </p>
+  </div>
+</section>
+
+
+<section class="section" id="BibTeX">
+  <div class="container is-max-desktop content">
+    <br>
+    <hr>
+    <br>
+    <h2 class="title">BibTeX</h2>
+    <pre><code>@article{TBD,
+  author    = {Yang, Wen and Jin, Wanxin},
+  title     = {ContactSDF: Signed Distance Functions as Multi-Contact Models for Dexterous Manipulation},
+  journal   = {tbd},
+  year      = {2024},
+}</code></pre>
+  </div>
+</section>
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="content has-text-centered">
+      <a class="icon-link"
+         href="./static/videos/nerfies_paper.pdf">
+        <i class="fas fa-file-pdf"></i>
+      </a>
+      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            This website is licensed under a <a rel="license"
+                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+          <p>
+            This means you are free to borrow the <a
+              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
+            we just ask that you link back to this page in the footer.
+            Please remember to remove the analytics code included in the header of the website which
+            you do not want on your website.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
