@@ -6,7 +6,7 @@
         content="">
   <meta name="keywords" content="Dexterous Manipulation, Contact Dynamics, Signed Distance Functions, Model Predictive Control, Reinforcement Learning">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Where to Touch, How to Contact: A Hierarchical RL–MPC Framework for Geometry-Aware Long-Horizon Dexterous Manipulation</title>
+  <title>Where to Touch, How to Contact: Hierarchical RL–MPC Framework for Geometry-Aware Long-Horizon Dexterous Manipulation</title>
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
@@ -46,6 +46,22 @@
       height: auto;
       transform: scale(1.25);
       transform-origin: center center;
+    }
+    /* square center-crop thumbnails for hardware GIFs */
+    .square-grid .thumb {
+      position: relative;
+      width: 100%;
+      padding-top: 100%; /* 1:1 aspect ratio */
+      overflow: hidden;
+    }
+    .square-grid .thumb img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
     }
   </style>
 
@@ -218,98 +234,6 @@
 </section>
 
 
-<!-- Abstract. section -->
-<!-- <section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p class="emphasized-first-letter">
-            We propose ContactSDF, a new model that leverages signed distance functions (SDFs) to approximate multi-contact dynamics, 
-            including both collision detection and time-stepping routines. In the ContactSDF, 
-            an SDF is first constructed from the supporting plane representation of the object for collision detection, 
-            and then the obtained contact velocity dual cones are used to construct a second SDF for time stepping of contact dynamics. 
-            The two SDF constructions lead to a differentiable and closed-form multi-contact dynamic model for state prediction, 
-            different from classic complementary-based multi-contact models. 
-            ContactSDF allows for efficient model-based control and learning in contact-rich manipulation, 
-            when integrated into existing learning and control frameworks. 
-            We performed extensive simulation experiments to show the effectiveness of ContactSDF for model learning 
-            and real-time control of dexterous manipulation. We also evaluate the ContactSDF on a real-world Allegro hand for in-hand dexterous manipulation. 
-            Results show with around 2 minutes of learning, 
-            the ContactSDF achieves high-quality MPC for dexterous manipulation at a frequency of 30-60Hz.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section> -->
-
-
-<!-- <section class="hero teaser">
-  <h1 class="title is-1" style="text-align: center;">Hardware Real-time Manipulation</h1>
-  <div class="container is-max-desktop">
-    <div class="content has-text-justified" style="font-size: 18px;">
-      The contactSDF model is able to capture the multi-contact dynamics quickly and facilitate the MPC to 
-      finish the dexterous manipulation task in real-time.
-      We present the complete learning from scratch process on the Allegro hand hardware in reorientation of the cube. 
-      The target is to rotate the cube in a counterclockwise direction. Each trajectory is tasked with a 90-degree incremental pose change.
-      The finger joints will be reset to the initial position after each rollout. We demonstrate that within only 2 minutes learning from the on-MPC
-      data, the task can be accomplished.
-    </div>
-      <h1 class="title is-1" style="text-align: left; font-size: 36px;">Learning from Scratch (uncut long take)</h1>
-      <div class="hero-body is-vcentered" style="background-color: rgb(0, 0, 0); padding: 1px;">
-      <video id="teaser" muted loop playsinline controls style="width: 100%; max-width: 1000px; height: auto;">
-        <source src="./static/videos/hardware/hardware_learning_from_scratch.mp4"
-                type="video/mp4">
-      </video>
-    </div>
-  </div>
-</section> -->
-
-
-<!-- <section class="section">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-one-thirds">
-        <h1 class="title is-1" style="text-align: left; font-size: 36px;">Hardware Manipulation Evaluation (uncut long take)</h1>
-        <div class="content has-text-justified">
-          With the learned contactSDF model, we showcase the real-time manipulation results as follows. The MPC is able to finish both 
-          counterclockwise and clockwise continuous reorientation tasks in real-time.
-        </div>
-      </div>
-    </div>
-
-    <div class="column is-full">
-      <div class="content has-text-left">
-        <ul style="margin-top: -20px;">
-        </ul>
-      </div>
-    </div>
-
-    <div class="columns is-mobile is-vcentered">
-      <div class="column is-half" style="background-color: black; padding: 10px;">
-        <p style="text-align: center; color: white; font-size: 24px;"><b>Counterclockwise reorientation</b></p>
-        <video class="video"  
-          autoplay controls muted loop playsinline 
-          style="width: 450px; height: 300px; display: block; margin: 0 auto;" 
-          src="./static/videos/hardware/hardware_ccw.mp4"> 
-        </video>
-      </div>
-      <div class="column is-half" style="background-color: black; padding: 10px;">
-        <p style="text-align: center; color: white; font-size: 24px;"><b>Clockwise reorientation</b></p>
-        <video class="video"  
-          autoplay controls muted loop playsinline 
-          style="width: 450px; height: 300px; display: block; margin: 0 auto;" 
-          src="./static/videos/hardware/hardware_cw.mp4"> 
-        </video>
-      </div>
-    
-    </div>
-  </div>
-</section> -->
-
-
 <!-- how-it-works section -->
 
 <section class="section">
@@ -340,11 +264,10 @@
   </div>
 </section>
 
-
 <section class="section">
   <div class="container is-max-desktop">
     <!-- Results header. -->
-    <h1 class="title is-2">More Simulation Results</h1>
+    <h1 class="title is-2">Real-World Results</h1>
     <br>
     <h3 class="title is-4" style="text-align: center;">Geometry-generalized Pushing Task</h3>
     <p>  In this task, the goal is to learn
@@ -355,6 +278,80 @@
           training, and the remaining 6 (F, I, K, V, Y, Z) are held
           out for evaluation.  
     </p>
+    <br>
+    <!-- Hardware GIFs: 3x4 centered square crop grid -->
+    <div class="columns is-multiline is-centered square-grid">
+      <div class="column is-3">
+        <div class="thumb"><img src="./static/videos/hardware/E_acc.gif" alt="E_acc"></div>
+      </div>
+      <div class="column is-3">
+        <div class="thumb"><img src="./static/videos/hardware/F_acc.gif" alt="F_acc"></div>
+      </div>
+      <div class="column is-3">
+        <div class="thumb"><img src="./static/videos/hardware/H_acc.gif" alt="H_acc"></div>
+      </div>
+      <div class="column is-3">
+        <div class="thumb"><img src="./static/videos/hardware/I_acc.gif" alt="I_acc"></div>
+      </div>
+      <div class="column is-3">
+        <div class="thumb"><img src="./static/videos/hardware/K_acc.gif" alt="K_acc"></div>
+      </div>
+      <div class="column is-3">
+        <div class="thumb"><img src="./static/videos/hardware/L_acc.gif" alt="L_acc"></div>
+      </div>
+      <div class="column is-3">
+        <div class="thumb"><img src="./static/videos/hardware/N_acc.gif" alt="N_acc"></div>
+      </div>
+      <div class="column is-3">
+        <div class="thumb"><img src="./static/videos/hardware/T_acc.gif" alt="T_acc"></div>
+      </div>
+      <div class="column is-3">
+        <div class="thumb"><img src="./static/videos/hardware/V_acc.gif" alt="V_acc"></div>
+      </div>
+      <div class="column is-3">
+        <div class="thumb"><img src="./static/videos/hardware/X_acc.gif" alt="X_acc"></div>
+      </div>
+      <div class="column is-3">
+        <div class="thumb"><img src="./static/videos/hardware/Y_acc.gif" alt="Y_acc"></div>
+      </div>
+      <div class="column is-3">
+        <div class="thumb"><img src="./static/videos/hardware/Z_acc.gif" alt="Z_acc"></div>
+      </div>
+    </div>
+
+    <br>
+    <h3 class="title is-4" style="text-align: center;">3D Object Reorientation Task</h3>
+    <p>  In this task, the goal is to reorient a
+          cube from a randomized initial pose to a randomized 3D target
+          pose.
+    </p>
+    <br>
+
+    <div class="columns is-multiline is-centered square-grid">
+      <div class="column is-3">
+        <div class="thumb"><img src="./static/videos/hardware/cube_1.gif" alt="cube_1_hd"></div>
+      </div>
+      <div class="column is-3">
+        <div class="thumb"><img src="./static/videos/hardware/cube_2.gif" alt="cube_2_hd"></div>
+      </div>
+      <div class="column is-3">
+        <div class="thumb"><img src="./static/videos/hardware/cube_3.gif" alt="cube_3_hd"></div>
+      </div>
+      <div class="column is-3">
+        <div class="thumb"><img src="./static/videos/hardware/cube_4.gif" alt="cube_4_hd"></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<section class="section">
+  <div class="container is-max-desktop">
+    <!-- Results header. -->
+    <h1 class="title is-2">More Simulation Results</h1>
+    <br>
+    <h3 class="title is-4" style="text-align: center;">Geometry-generalized Pushing Task</h3>
     <br>
 
     <!-- Results videos in 4x3 grid -->
@@ -399,10 +396,6 @@
 
     <br>
     <h3 class="title is-4" style="text-align: center;">3D Object Reorientation Task</h3>
-    <p>  In this task, the goal is to reorient a
-          cube from a randomized initial pose to a randomized 3D target
-          pose.
-    </p>
     <br>
 
     <div class="columns is-multiline is-centered">
@@ -427,17 +420,6 @@
 
 <!-- To Be Completed -->
 <!-- Acknowledgements -->
-<section class="section">
-  <div class="container is-max-desktop">
-    <br>
-    <hr>
-    <br>
-    <!-- Results header. -->
-    <h1 class="title is-2">Acknowledgements</h1>
-    <p>  Special thanks to...
-    </p>
-  </div>
-</section>
 
 
 <section class="section" id="BibTeX">
@@ -447,10 +429,10 @@
     <br>
     <h2 class="title">BibTeX</h2>
     <pre><code>@article{TBD,
-  author    = {Yang, Wen and Jin, Wanxin},
-  title     = {ContactSDF: Signed Distance Functions as Multi-Contact Models for Dexterous Manipulation},
+  author    = {Xie, Zhixian and Xiang, Yu and Michael Posa and Jin, Wanxin},
+  title     = {Where to Touch, How to Contact: A Hierarchical RL–MPC Framework for Geometry-Aware Long-Horizon Dexterous Manipulation},
   journal   = {tbd},
-  year      = {2024},
+  year      = {2026},
 }</code></pre>
   </div>
 </section>
