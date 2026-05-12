@@ -63,6 +63,22 @@
       min-height: 100%;
       object-fit: cover;
     }
+    /* 4:3 center-crop thumbnails for the pivoting-flipping GIFs */
+    .rect-grid .thumb {
+      position: relative;
+      width: 100%;
+      padding-top: 75%; /* 4:3 aspect ratio */
+      overflow: hidden;
+    }
+    .rect-grid .thumb img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      min-width: 100%;
+      min-height: 100%;
+      object-fit: cover;
+    }
   </style>
 
   <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
@@ -224,7 +240,7 @@
             </figcaption> -->
             <!-- <br> -->
           <video id="teaser" muted loop playsinline controls style="width: 100%; max-width: 1000px; height: auto;">
-            <source src="./static/videos/hardware/demo_low_resolution.mp4"
+            <source src="./static/videos/hardware/demo_low_res_v2.mp4"
                     type="video/mp4">
           </video>
         </figure>
@@ -339,6 +355,24 @@
       </div>
       <div class="column is-3">
         <div class="thumb"><img src="./static/videos/hardware/cube_4.gif" alt="cube_4_hd"></div>
+      </div>
+    </div>
+
+    <br>
+    <h3 class="title is-4" style="text-align: center;">Pivoting-Flipping Task</h3>
+    <p>  In this task, the goal is to do a 180-degree pivoting-flipping of a rectangular object from an initial pose on the stair to a target on the table.</table>.
+    </p>
+    <br>
+
+    <div class="columns is-multiline is-centered rect-grid">
+      <div class="column is-4">
+        <div class="thumb"><img src="./static/videos/hardware/edge_acc_1.gif" alt="cube_1_hd"></div>
+      </div>
+      <div class="column is-4">
+        <div class="thumb"><img src="./static/videos/hardware/edge_acc_2.gif" alt="cube_2_hd"></div>
+      </div>
+      <div class="column is-4">
+        <div class="thumb"><img src="./static/videos/hardware/edge_acc_3.gif" alt="cube_3_hd"></div>
       </div>
     </div>
 
